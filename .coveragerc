@@ -1,0 +1,6 @@
+[run]
+omit =
+    mcalc/tests/*
+    setup.py
+    venv/*
+
