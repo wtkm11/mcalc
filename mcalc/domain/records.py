@@ -1,10 +1,11 @@
 """
 Records domain logic
 """
-from typing import List
+from typing import Dict, List
 import pandas as pd
 
-from mcalc.dataframes import records
+from mcalc.domain.comorbidity import get_comorbidity_columns
+
 
 def filter_records_by_codes(
         records: pd.DataFrame,

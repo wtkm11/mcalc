@@ -5,29 +5,44 @@ from unittest import TestCase
 
 import pandas as pd
 
-from mcalc.domain.diagnosis_codes import (
-    get_diagnosis_codes, UnknownMeasureException
-)
+from mcalc.domain.utils import extract_measure_data
+from mcalc.domain.exceptions import UnknownMeasureException
 from mcalc.domain.records import filter_records_by_codes
 
 
-class GetDiagnosisCodesTests(TestCase):
+class ExtractMeasureDataTests(TestCase):
     """
-    Tests of get_diagnosis_codes function
+    Tests of extract_measure_data function
     """
+
+    def setUp(self):
+        """
+        Set up test data
+        """
+        self.data = pd.DataFrame(
+            index=["ABC", "BCD", "CDE"],
+            data={
+                "Diagnosis codes": [
+                    "code 1, code red, code fish",
+                    "code 5, code green, code turtle",
+                    "code 12, code blue, code snake",
+                ],
+            }
+        )
 
     def test_returns_diagnosis_codes(self):
         """
         Test that a list of diagnosis codes is returned
         """
-        self.assertTrue(isinstance(get_diagnosis_codes("AMI"), list))
+        codes = extract_measure_data("BCD", self.data, "Diagnosis codes")
+        self.assertTrue(isinstance(codes, list))
 
     def test_raises_exception_if_measure_unknown(self):
         """
         Test that an exception is raised if the measure is unknown
         """
         with self.assertRaises(UnknownMeasureException):
-            get_diagnosis_codes("???")
+            extract_measure_data("???", self.data, "Diagnosis codes")
 
 
 class FilterRecordsByCodesTests(TestCase):
