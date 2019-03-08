@@ -13,7 +13,7 @@ $ pip install -e .
 ```
 
 # Run
-`$ python ./cli.py measure MEASURE_NAME` where `MEASURE_NAME` is the name of a
+`$ mcalc lace MEASURE_NAME` where `MEASURE_NAME` is the name of a
 measure like `AMI` or `COPD`
 
 

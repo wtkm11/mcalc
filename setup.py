@@ -13,4 +13,7 @@ setup(
         "click",  # CLI library
         "pandas",
     ],
+    entry_points={
+        "console_scripts": ["mcalc=mcalc.cli:cli"]
+    }
 )
