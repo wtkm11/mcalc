@@ -16,6 +16,8 @@ $ pip install -e .
 `$ mcalc lace MEASURE_NAME` where `MEASURE_NAME` is the name of a
 measure like `AMI` or `COPD`
 
+*NOTE: MEASURE_NAME is case-sensitive.*
+
 
 # Running tests
 ```
