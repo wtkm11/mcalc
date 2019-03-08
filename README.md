@@ -1,6 +1,6 @@
 # mcalc
 
-A program for computing measure scores
+A program for computing LACE scores
 
 ## How to use
 
