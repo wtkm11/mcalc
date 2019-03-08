@@ -53,7 +53,7 @@ class LACEScore:
             # Length of Stay
             self.get_length_of_stay_lace(row["LengthofStay"]) +
             # Acute Admissions
-            # 3 if row["EmergencyAdmission"] == "Yes" else 0 +
+            3 if row["Inpatient_visits"] == 1 else 0 +
             # Comorbidity
             self.count_comorbidity(row, self.comorbidity_columns) +
             # ED visits

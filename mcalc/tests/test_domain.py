@@ -153,7 +153,7 @@ class LACEScoreTests(TestCase):
                 "encounter_id": 1,
                 "como1": "Yes",
                 "LengthofStay": 0,
-                "EmergencyAdmission": "No",
+                "Inpatient_visits": 0,
                 "ED_visits": 0,
             }),
             1
