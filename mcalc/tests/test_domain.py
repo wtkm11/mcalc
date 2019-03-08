@@ -3,9 +3,12 @@ Tests domain
 """
 from unittest import TestCase
 
+import pandas as pd
+
 from mcalc.domain.diagnosis_codes import (
     get_diagnosis_codes, UnknownMeasureException
 )
+from mcalc.domain.records import filter_records_by_codes
 
 
 class GetDiagnosisCodesTests(TestCase):
@@ -25,3 +28,22 @@ class GetDiagnosisCodesTests(TestCase):
         """
         with self.assertRaises(UnknownMeasureException):
             get_diagnosis_codes("???")
+
+
+class FilterRecordsByCodesTests(TestCase):
+    """
+    Tests of filter_records_by_codes function
+    """
+
+    def test_returns_filtered_dataframe(self):
+        """
+        Test that a filtered DataFrame is returned
+        """
+        dcs = ["EXPECTED_1", "EXPECTED_2"]
+        data = pd.DataFrame({
+            "encounter_id": [6, 5, 8],
+            "diagnosis_code": ["EXPECTED_2", "UNEXPECTED", "EXPECTED_1"],
+        })
+        filtered = filter_records_by_codes(data, dcs)
+        self.assertTrue(isinstance(filtered, pd.DataFrame))
+        self.assertFalse(any(filtered.diagnosis_code.isin(["UNEXPECTED"])))
